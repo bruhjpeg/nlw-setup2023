@@ -1,11 +1,30 @@
+//REGISTRO EM MEMORIA
+
 const form = document.querySelector('#form-habits')
 const nlwSetup = new NLWSetup(form)
+const button = document.querySelector('header button')
 
-const data = {
-  academia: ['01-17', '01-18', '01-19', '01-20', '01-21', '01-22'],
-  estudos: ['01-16', '01-17', '01-18'],
-  alimentaçãoSaudável: ['01-16', '01-17', '01-18']
+//REGISTRO EM MEMORIA DE EVENTOS
+button.addEventListener('click', add)
+form.addEventListener('change', save)
+
+function add() {
+  const today = new Date().toLocaleDateString('pt-br').slice(0, -5)
+  const dayExists = nlwSetup.dayExists(today)
+
+  if (dayExists) {
+    alert('Dia ja incluso ⚠')
+    return
+  }
+  alert('Adicionado com sucesso ✔')
+  nlwSetup.addDay(today)
 }
+
+function save() {
+  localStorage.setItem('NLWSetup@habits', JSON.stringify(nlwSetup.data))
+}
+
+const data = JSON.parse(localStorage.getItem('NLWSetup@habits'))
 
 nlwSetup.setData(data)
 nlwSetup.load()

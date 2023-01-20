@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #000000;
+  background-color: #09090A;
 
   height: 100vh;
   color: white;
@@ -18,7 +18,7 @@ header {
   padding: 48px;
 
   position: fixed;
-  background-color: #000000;
+  background-color: #09090A;
   width: 100%;
 }
 
